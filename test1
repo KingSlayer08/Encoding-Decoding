@@ -1,0 +1,75 @@
+//convert the given line into ASCII
+//generate a random no
+//add this random no to ASCII of each character for encoding  and the same no for decoding
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void enc(char *,int);
+void dec(char *,int);
+void main()
+{
+	int i,r,ch;
+	char a[20],n[20];
+	while(1)
+	{
+		printf("\n\n1.Input a line\n2.Encode the line\n3.Decode the line\n4.Exit\n");
+		printf("Enter your choice: ");
+		scanf("%d",&ch);
+		printf("\n");
+		switch(ch)
+		{
+			case 1: 
+				srand(time(NULL));
+				r = rand();
+				printf("Enter a sentence: ");
+				fflush(stdin);
+				gets(a);
+				break;
+			case 2:
+				enc(a,r);
+				break;
+			case 3: 
+				dec(a,r);
+				break;
+			case 4:
+				exit(1);
+			default:
+				printf("Enter a valid choice!");
+				break;				
+		}
+	}
+}
+void enc(char *a,int r)
+{
+	int i;
+	char n[20];
+	printf("Generated random no: %d\n",r);				//generated random number
+	for(i=0;i<20;i++)
+	{
+		n[i]=a[i];
+	}
+	for(i=0;i<strlen(n);i++)		//enoding(working perfectly)
+	{
+		n[i]=r+a[i];
+		printf("%d ",n[i]);			//printing ASCII + random in int
+	}
+	printf("\n");
+	for(i=0;i<strlen(n);i++)				
+	{
+		printf("%c",n[i]);			//printing ASCII + random in char
+	}		
+}
+void dec(char *a,int r)
+{
+	int i;
+	for(i=0;i<20;i++)		//decoding
+	{
+		a[i]=a[i]-r;				
+//this is not working im a bit confused with the values in functions
+//it works inside the main
+//plz do this fix and ill check on the net for textcolor n all
+//n ders one more thing left check the 3rd point in d question i cant understand that
+		printf("%c ",a[i]);			//printing the original sentence 
+	}
+}
