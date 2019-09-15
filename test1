@@ -9,8 +9,8 @@ void enc(char *,int);
 void dec(char *,int);
 void main()
 {
-	int i,r,ch;
-	char a[20],n[20];
+	int r,ch;
+	char a[50];
 	while(1)
 	{
 		printf("\n\n1.Input a line\n2.Encode the line\n3.Decode the line\n4.Exit\n");
@@ -39,19 +39,17 @@ void main()
 				break;				
 		}
 	}
-}
-void enc(char *a,int r)
+}void enc(char *a,int r)
 {
 	int i;
-	char n[20];
+	char n[50];
 	printf("Generated random no: %d\n",r);				//generated random number
-	for(i=0;i<20;i++)
+	for(i=0;i<strlen(a);i++)
 	{
-		n[i]=a[i];
+		n[i]=r+a[i];
 	}
 	for(i=0;i<strlen(n);i++)		//enoding(working perfectly)
 	{
-		n[i]=r+a[i];
 		printf("%d ",n[i]);			//printing ASCII + random in int
 	}
 	printf("\n");
@@ -59,17 +57,17 @@ void enc(char *a,int r)
 	{
 		printf("%c",n[i]);			//printing ASCII + random in char
 	}		
+	for(i=0;i<strlen(n);i++)
+	{
+		a[i]=n[i];
+	}
 }
 void dec(char *a,int r)
 {
 	int i;
-	for(i=0;i<20;i++)		//decoding
+	for(i=0;i<strlen(a);i++)		//decoding
 	{
-		a[i]=a[i]-r;				
-//this is not working im a bit confused with the values in functions
-//it works inside the main
-//plz do this fix and ill check on the net for textcolor n all
-//n ders one more thing left check the 3rd point in d question i cant understand that
+		a[i]=a[i]-r;	
 		printf("%c ",a[i]);			//printing the original sentence 
 	}
 }
