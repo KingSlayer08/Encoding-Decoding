@@ -7,14 +7,16 @@
 #include <time.h>
 void enc(char *,int);
 void dec(char *,int);
+void ex();
 void main()
 {
 	int r,ch;
 	char a[50];
 	while(1)
 	{
-		printf("\n\n1.Input a line\n2.Encode the line\n3.Decode the line\n4.Exit\n");
-		printf("Enter your choice: ");
+		printf("\n<--------------------------------------------------------------------------------------------------------------------->");
+		printf("\n\t\t\t\t\t\t1.Input a line\n\t\t\t\t\t\t2.Encode the line\n\t\t\t\t\t\t3.Decode the line\n\t\t\t\t\t\t4.Exit\n");
+		printf("\t\t\t\t\t\tEnter your choice: ");
 		scanf("%d",&ch);
 		printf("\n");
 		switch(ch)
@@ -22,7 +24,7 @@ void main()
 			case 1: 
 				srand(time(NULL));
 				r = rand();
-				printf("Enter a sentence: ");
+				printf("\n\t\t\tEnter a sentence: ");
 				fflush(stdin);
 				gets(a);
 				break;
@@ -33,9 +35,9 @@ void main()
 				dec(a,r);
 				break;
 			case 4:
-				exit(1);
+				ex();
 			default:
-				printf("Enter a valid choice!");
+				printf("\n\t\t\t\t\t\tEnter a valid choice!");
 				break;				
 		}
 	}
@@ -44,16 +46,12 @@ void enc(char *a,int r)
 {
 	int i;
 	char n[50];
-	printf("Generated random no: %d\n",r);				//generated random number
+	printf("\n\n\t\t\t\t\t\tGenerated random no: %d\n",r);				//generated random number
 	for(i=0;i<strlen(a);i++)
 	{
-		n[i]=r+a[i];
+		n[i]=r+a[i];				//Encoding
 	}
-	for(i=0;i<strlen(n);i++)		//enoding
-	{
-		printf("%d ",n[i]);			//printing ASCII + random in int
-	}
-	printf("\n");
+	printf("\n\t\t\t\t\tEncoded value::");
 	for(i=0;i<strlen(n);i++)				
 	{
 		printf("%c",n[i]);			//printing ASCII + random in char
@@ -66,9 +64,20 @@ void enc(char *a,int r)
 void dec(char *a,int r)
 {
 	int i;
+	printf("\n\t\t\t\t\t\tDecoded value::\n\t\t\t\t\t");
 	for(i=0;i<strlen(a);i++)		//decoding
 	{
 		a[i]=a[i]-r;	
-		printf("%c ",a[i]);			//printing the original sentence 
+		printf("%c",a[i]);			//printing the original sentence 
 	}
+}
+void ex()
+{
+	printf("\n\t\t\t\t\t\t***************");
+	printf("\n\t\t\t\t\t\t*             *");
+	printf("\n\t\t\t\t\t\t*SEE YOU SOON!*");
+	printf("\n\t\t\t\t\t\t*             *");
+	printf("\n\t\t\t\t\t\t***************");
+	printf("\n<--------------------------------------------------------------------------------------------------------------------->");
+	exit(1);
 }
