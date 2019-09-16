@@ -10,7 +10,8 @@ void dec(char *,int);
 void ex();
 void main()
 {
-	int r,ch;
+	system("COLOR B4");
+	int i,r,ch;
 	char a[50];
 	while(1)
 	{
