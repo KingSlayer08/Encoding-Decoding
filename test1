@@ -1,23 +1,27 @@
-//convert the given line into ASCII
-//generate a random no
-//add this random no to ASCII of each character for encoding  and the same no for decoding
+//Topic-Function with Arrays
+//Question- Encoding and Decoding any line (Chapter-Arrays)
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-void enc(char *,int);
-void dec(char *,int);
+#include <windows.h>
+void enc(char *,int,FILE *);
+void dec(char *,int,FILE *);
 void ex();
+char n[50];
 void main()
 {
-	system("COLOR B4");
+	SetConsoleTitle("Encoding-Decoding");
+	system("COLOR B0");
 	int i,r,ch;
 	char a[50];
+	FILE *fp;	//using files for storing the input lines as part of arrays
 	while(1)
 	{
+		fp=fopen("encdec.txt","a");
 		printf("\n<--------------------------------------------------------------------------------------------------------------------->");
-		printf("\n\t\t\t\t\t\t1.Input a line\n\t\t\t\t\t\t2.Encode the line\n\t\t\t\t\t\t3.Decode the line\n\t\t\t\t\t\t4.Exit\n");
-		printf("\t\t\t\t\t\tEnter your choice: ");
+		printf("\n\t\t\t\t\t\t1.Input a line\n\t\t\t\t\t\t2.Encode the line\n\t\t\t\t\t\t3.Decode the line\n\t\t\t\t\t\t4.Exit");
+		printf("\n\t\t\t\t\t\tEnter your choice: ");
 		scanf("%d",&ch);
 		printf("\n");
 		switch(ch)
@@ -30,23 +34,22 @@ void main()
 				gets(a);
 				break;
 			case 2:
-				enc(a,r);
+				enc(a,r,fp);
 				break;
 			case 3: 
-				dec(a,r);
+				dec(a,r,fp);
 				break;
 			case 4:
-				ex();
+				ex();	
 			default:
 				printf("\n\t\t\t\t\t\tEnter a valid choice!");
 				break;				
 		}
 	}
 }
-void enc(char *a,int r)
+void enc(char *a,int r,FILE *fp)
 {
 	int i;
-	char n[50];
 	printf("\n\n\t\t\t\t\t\tGenerated random no: %d\n",r);				//generated random number
 	for(i=0;i<strlen(a);i++)
 	{
@@ -57,12 +60,13 @@ void enc(char *a,int r)
 	{
 		printf("%c",n[i]);			//printing ASCII + random in char
 	}		
+	fprintf(fp,"\n%s\n",n);
 	for(i=0;i<strlen(n);i++)
 	{
 		a[i]=n[i];
 	}
 }
-void dec(char *a,int r)
+void dec(char *a,int r,FILE *fp)
 {
 	int i;
 	printf("\n\t\t\t\t\t\tDecoded value::\n\t\t\t\t\t");
@@ -71,6 +75,8 @@ void dec(char *a,int r)
 		a[i]=a[i]-r;	
 		printf("%c",a[i]);			//printing the original sentence 
 	}
+	fprintf(fp,"%s\n",a);
+	fclose(fp);
 }
 void ex()
 {
